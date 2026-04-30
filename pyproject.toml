@@ -14,11 +14,12 @@ classifiers = ["Programming Language :: Python :: 3"]
 # requirements files.
 dependencies = [
   "RPi.GPIO",
-  "st7789==0.0.4",
-  "pillow",
+  "importlib-resources",
   "numpy",
+  "pillow",
+  "pychromecast",
   "spidev",
-  "importlib-resources"
+  "st7789==0.0.4",
 ]
 
 [project.optional-dependencies]
