@@ -21,25 +21,41 @@ in the form of an enum called "Pin" also defined in hardware.py that
 just maps the Pi pin number to its corresponding BCM pin number so when 
 I need to verify that the wires are correctly routed, I can just count.
 
-| Pi Pin | GPIO Pin | Peripheral Pin           | Description                                            |
-|--------|----------|--------------------------|--------------------------------------------------------|
-| 1      | -        | Light sensor Vin         | 3V3 supply voltage for CdS                             |
-| 2      | -        | TB6612 VCC               | Motor control 5V supply (VCC) (NOT motor power)        |
-| 4      | -        | ST7789 VCC               | Shared peripheral 5V supply (VCC for both displays)    |
-| 6      | -        | ST7789 GND               | Shared peripheral GND (display GND, motor control GND) |
-| 7      | 4        | TB6612 PWM               | Motor control PWM                                      |
-| 11     | 17       | TB6612 AIN2              | Motor control AIN2                                     |
-| 12     | 18       | TB6612 AIN1              | Motor control AIN1                                     |
-| 18     | 24       | ST7789 RST               | Left display reset bit                                 |
-| 19     | 10       | ST7789 SDA               | (SPI0 MOSI) (shared between two displays)              |
-| 22     | 25       | ST7789 DC                | (SPI0 MISO) (shared between two displays)              |
-| 23     | 11       | ST7789 SCLK              | (SPI0) (shared between two displays)                   |
-| 24     | 8        | ST7789 CS                | Right display chip select (SPI0 CE1)                   |
-| 26     | 7        | ST7789 CS                | Left display chip select (SPI0 CE0)                    |
-| 29     | 5        | ST7789 Backlight         | Backlight control for both displays                    |
-| 31     | 6        | ST7789 RST               | Right display reset bit                                |
-| 39     | -        | Light sensor GND         |                                                        |
-| 40     | 21       | Light sensor measurement |                                                        |
+| Pi Pin | GPIO Pin | Peripheral Pin           | Description                                                              |
+|--------|----------|--------------------------|--------------------------------------------------------------------------|
+| 1      | -        | Light sensor Vin         | 3V3 supply voltage for CdS                                               |
+| 2      | -        | TB6612 VCC               | Motor control 5V supply (VCC) (NOT motor power, see below)               |
+| 6      | -        | ST7789 GND               | Shared peripheral GND (display GND, motor control GND, light sensor GND) |
+| 7      | 4        | TB6612 PWM               | Motor control PWM                                                        |
+| 11     | 17       | TB6612 AIN2              | Motor control AIN2                                                       |
+| 12     | 18       | TB6612 AIN1              | Motor control AIN1                                                       |
+| 17     | -        | ST7789 VCC               | Shared peripheral 3.3V supply (VCC for both displays)                    |
+| 18     | 24       | ST7789 RST               | Left display reset bit                                                   |
+| 19     | 10       | ST7789 SDA               | (SPI0 MOSI) (shared between two displays)                                |
+| 22     | 25       | ST7789 DC                | Data/command toggle (standard GPIO) (shared between two displays)        |
+| 23     | 11       | ST7789 SCLK              | (SPI0) (shared between two displays)                                     |
+| 24     | 8        | ST7789 CS                | Right display chip select (SPI0 CE0)                                     |
+| 26     | 7        | ST7789 CS                | Left display chip select (SPI0 CE1)                                      |
+| 29     | 5        | ST7789 Backlight         | Backlight control for both displays                                      |
+| 31     | 6        | ST7789 RST               | Right display reset bit                                                  |
+| 40     | 21       | Light sensor measurement |                                                                          |
+
+## Power Distribution
+
+In order to power the motors, the Raspberry Pi, and the Google Home mini from a single wall adapter, I did the 
+following:
+* The main power supply is a 5V/4A DC wall adapter
+* This plugs into a DC barrel jack screw terminal
+* The screw terminals split the power three ways:
+  * **To the Google Home Mini:** The original Google Home Mini's micro-USB cable was sacrificed, cut, and the 
+    internal red (+) and black (-) power wires stripped and inserted directly into the corresponding screw terminal 
+    hubs, and plug the Micro-USB end into the Google Home.
+  * **To the Raspberry Pi Zero W:** Cut a second high-quality Micro-USB cable, wire the Red/Black wires to the screw 
+    terminal hub, and plug the Micro-USB end into the Pi's `PWR IN` port.
+  * **To the Motor:** Run standard 22 AWG solid core wire directly from the screw terminal hub `+` and `-` to the 
+    **`VMOT`** and **`GND`** pins on the TB6612 Motor Driver. *(This bypasses the Pi entirely so the motor can pull as much current as it needs safely).*
+**Common ground:** Run a wire connecting the Pi's ground (e.g., Pin 6) to the logic `GND` on the TB6612 and the 
+    displays so all the microchips share the same electrical reference point.
 
 # Parts and Resources:
 - [Inspiration](https://medium.com/@jamesfuthey/furlexa-building-an-animatronic-voice-assistant-the-easy-way-e5b3c8fecbf7)
