@@ -4,35 +4,35 @@
 #
 #    pip-compile --no-emit-index-url --output-file=requirements.txt --strip-extras pyproject.toml
 #
-casttube==0.2.1
+casttube
     # via pychromecast
-certifi==2026.4.22
+certifi
     # via requests
-charset-normalizer==3.4.7
+charset-normalizer
     # via requests
-idna==3.13
+idna
     # via requests
-ifaddr==0.2.0
+ifaddr
     # via zeroconf
-importlib-resources==6.4.4
+importlib-resources
     # via furpberry (pyproject.toml)
-numpy==2.0.2
+numpy
     # via furpberry (pyproject.toml)
-pillow==10.4.0
+pillow
     # via furpberry (pyproject.toml)
-protobuf==7.34.1
+protobuf
     # via pychromecast
-pychromecast==14.0.10
+pychromecast
     # via furpberry (pyproject.toml)
-requests==2.33.1
+requests
     # via casttube
-rpi-gpio==0.7.1
+rpi-gpio
     # via furpberry (pyproject.toml)
-spidev==3.6
+spidev
     # via furpberry (pyproject.toml)
 st7789==0.0.4
     # via furpberry (pyproject.toml)
-urllib3==2.6.3
+urllib3
     # via requests
-zeroconf==0.148.0
+zeroconf
     # via pychromecast

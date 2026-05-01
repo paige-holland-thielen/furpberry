@@ -4,86 +4,86 @@
 #
 #    pip-compile --extra=dev --no-emit-index-url --output-file=dev-requirements.txt pyproject.toml
 #
-attrs==24.2.0
+attrs
     # via
     #   flake8-annotations
     #   flake8-bugbear
-black==24.8.0
+black
     # via furpberry (pyproject.toml)
-casttube==0.2.1
+casttube
     # via pychromecast
-certifi==2026.4.22
+certifi
     # via requests
-charset-normalizer==3.4.7
+charset-normalizer
     # via requests
-click==8.1.7
+click
     # via black
-flake8==7.1.1
+flake8
     # via
     #   flake8-annotations
     #   flake8-bugbear
     #   flake8-isort
     #   flake8-pyproject
     #   furpberry (pyproject.toml)
-flake8-annotations==3.1.1
+flake8-annotations
     # via furpberry (pyproject.toml)
-flake8-bugbear==24.8.19
+flake8-bugbear
     # via furpberry (pyproject.toml)
-flake8-isort==6.1.1
+flake8-isort
     # via furpberry (pyproject.toml)
-flake8-pyproject==1.2.3
+flake8-pyproject
     # via furpberry (pyproject.toml)
-idna==3.13
+idna
     # via requests
-ifaddr==0.2.0
+ifaddr
     # via zeroconf
-importlib-resources==6.4.4
+importlib-resources
     # via furpberry (pyproject.toml)
-isort==5.13.2
+isort
     # via
     #   flake8-isort
     #   furpberry (pyproject.toml)
-mccabe==0.7.0
+mccabe
     # via flake8
-mypy==1.0.0
+mypy
     # via furpberry (pyproject.toml)
-mypy-extensions==1.0.0
+mypy-extensions
     # via
     #   black
     #   mypy
-numpy==2.0.2
+numpy
     # via furpberry (pyproject.toml)
-packaging==24.1
+packaging
     # via black
-pathspec==0.12.1
+pathspec
     # via black
-pillow==10.4.0
+pillow
     # via furpberry (pyproject.toml)
-platformdirs==4.2.2
+platformdirs
     # via black
-protobuf==7.34.1
+protobuf
     # via pychromecast
-pychromecast==14.0.10
+pychromecast
     # via furpberry (pyproject.toml)
-pycodestyle==2.12.1
+pycodestyle
     # via flake8
-pyflakes==3.2.0
+pyflakes
     # via flake8
-requests==2.33.1
+requests
     # via casttube
-rpi-gpio==0.7.1
+rpi-gpio
     # via furpberry (pyproject.toml)
-spidev==3.6
+spidev
     # via furpberry (pyproject.toml)
 st7789==0.0.4
     # via furpberry (pyproject.toml)
-types-requests==2.32.0.20240712
+types-requests
     # via furpberry (pyproject.toml)
-typing-extensions==4.12.2
+typing-extensions
     # via mypy
-urllib3==2.2.2
+urllib3
     # via
     #   requests
     #   types-requests
-zeroconf==0.148.0
+zeroconf
     # via pychromecast
