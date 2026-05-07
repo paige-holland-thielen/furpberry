@@ -4,26 +4,12 @@ from furpberry.util.google_home import GoogleHome
 
 gh = GoogleHome("furby")
 
-# Print basic info
-print("Cast status:", gh.cast.status)
-print("\nNamespaces:", gh.cast.status.namespaces)
-
-# Get media controller info
-mc = gh.cast.media_controller
-print(f"\nMedia controller status: {mc.status.player_state}")
-print(f"App: {gh.cast.app_display_name}")
-
-# Listen for messages
-print("\n--- Listening for 30 seconds (try pausing/playing music) ---")
-print(gh.read_status())
-time.sleep(10)
-print(gh.read_status())
-time.sleep(10)
-print(gh.read_status())
-time.sleep(10)
-print(gh.read_status())
-time.sleep(10)
-print(gh.read_status())
-time.sleep(10)
-print(gh.read_status())
+print("Testing chromecast interactions and printing output, press CTRL+C to exit. "
+      "Also play/pause music or whatever during this test to see things change")
+try:
+    while True:
+        print(f"Google home PLAYING: {gh.read_status()}")
+        time.sleep(3)
+except KeyboardInterrupt:
+    print("CTRL+C pressed, cleaning up")
 gh.stop()

@@ -1,7 +1,7 @@
 # Paige's Absolutely Unhinged Furby Hack Project
+
 This uses a 2012 Furby purchased on ebay and deconstructed. 
-It also uses a Raspberry Pi Zero W, a Google Home mini, solder,
-and hot glue.
+It also uses a Raspberry Pi Zero W, a Google Home mini, solder, hot glue, and unbridled whimsy.
 
 > You've created something that will wake up and dance when LEDs light up but isn't any more useful than a device that googles things for you? So you've created a Burning Man attendee.
 >
@@ -21,24 +21,25 @@ in the form of an enum called "Pin" also defined in hardware.py that
 just maps the Pi pin number to its corresponding BCM pin number so when 
 I need to verify that the wires are correctly routed, I can just count.
 
-| Pi Pin | GPIO Pin | Peripheral Pin           | Description                                                              |
-|--------|----------|--------------------------|--------------------------------------------------------------------------|
-| 1      | -        | Light sensor Vin         | 3V3 supply voltage for CdS                                               |
-| 2      | -        | TB6612 VCC               | Motor control 5V supply (VCC) (NOT motor power, see below)               |
-| 6      | -        | ST7789 GND               | Shared peripheral GND (display GND, motor control GND, light sensor GND) |
-| 7      | 4        | TB6612 PWM               | Motor control PWM                                                        |
-| 11     | 17       | TB6612 AIN2              | Motor control AIN2                                                       |
-| 12     | 18       | TB6612 AIN1              | Motor control AIN1                                                       |
-| 17     | -        | ST7789 VCC               | Shared peripheral 3.3V supply (VCC for both displays)                    |
-| 18     | 24       | ST7789 RST               | Left display reset bit                                                   |
-| 19     | 10       | ST7789 SDA               | (SPI0 MOSI) (shared between two displays)                                |
-| 22     | 25       | ST7789 DC                | Data/command toggle (standard GPIO) (shared between two displays)        |
-| 23     | 11       | ST7789 SCLK              | (SPI0) (shared between two displays)                                     |
-| 24     | 8        | ST7789 CS                | Right display chip select (SPI0 CE0)                                     |
-| 26     | 7        | ST7789 CS                | Left display chip select (SPI0 CE1)                                      |
-| 29     | 5        | ST7789 Backlight         | Backlight control for both displays                                      |
-| 31     | 6        | ST7789 RST               | Right display reset bit                                                  |
-| 40     | 21       | Light sensor measurement |                                                                          |
+| Pi Pin | GPIO Pin | Peripheral Pin           | Description                                                       |
+|--------|----------|--------------------------|-------------------------------------------------------------------|
+| 1      | -        | Light sensor Vin         | 3V3 supply voltage for CdS                                        |
+| 2      | -        | TB6612 VCC               | Motor control 5V supply (VCC) (NOT motor power, see below)        |
+| 6      | -        | TB6612 GND               | Motor control GND                                                 |
+| 7      | 4        | TB6612 PWM               | Motor control PWM                                                 |
+| 11     | 17       | TB6612 AIN2              | Motor control AIN2                                                |
+| 12     | 18       | TB6612 AIN1              | Motor control AIN1                                                |
+| 13     | -        | ST7789 GND               | Shared display GND                                                |
+| 17     | -        | ST7789 VCC               | Shared peripheral 3.3V supply (VCC for both displays)             |
+| 18     | 24       | ST7789 RST               | Left display reset bit                                            |
+| 19     | 10       | ST7789 SDA               | (SPI0 MOSI) (shared between two displays)                         |
+| 22     | 25       | ST7789 DC                | Data/command toggle (standard GPIO) (shared between two displays) |
+| 23     | 11       | ST7789 SCLK              | (SPI0) (shared between two displays)                              |
+| 24     | 8        | ST7789 CS                | Right display chip select (SPI0 CE0)                              |
+| 26     | 7        | ST7789 CS                | Left display chip select (SPI0 CE1)                               |
+| 29     | 5        | ST7789 Backlight         | Backlight control for both displays                               |
+| 31     | 6        | ST7789 RST               | Right display reset bit                                           |
+| 40     | 21       | Light sensor measurement |                                                                   |
 
 ## Power Distribution
 
@@ -93,7 +94,6 @@ This will loop forever (unless it's broken) and will activate the motor and eyes
 sensor detects something, and sleep otherwise.
 
 # Future Plans:
-- [ ] Include sound input to continue motion if music is playing? Currently, this is light-activated only. 
 - [ ] Replace Google home mini with Alexa so I can set my own activation phrase? Low priority but it would be cool to have it respond to "hey furby" (I probably won't do this since I already had google homes handy)
 - [ ] Build a second one using my own instructions and update as needed
 - [ ] Include startup script (setup and run on powerup)
