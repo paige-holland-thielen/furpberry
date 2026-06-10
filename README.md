@@ -76,8 +76,13 @@ following:
   - [RPi forum post about wiring phototransistor](https://forums.raspberrypi.com/viewtopic.php?t=207040)
   - [Configuring the GPIO for an input](https://sourceforge.net/p/raspberry-gpio-python/wiki/Inputs/)
   - I did use a resistor as indicated but the GPIO is digital and I only need light/no light
-- [2 LCD OLED Display Modules (to replace eyes)](https://www.aliexpress.us/item/3256804844327418.html)
-  - I got 2 1.54 inch modules but may have been able to use something smaller
+- [2 LCD OLED Display Modules (to replace eyes)](https://www.aliexpress.us/item/3256811774782958.html)
+  - I got 2 1.3 inch modules. I originally started wtih 1.54 inch modules and had trouble fitting them in the 
+    available space. I made liberal use of a dremel to make room in my initial prototype, but eventually moved to the 
+    1.3 inch screens for the final version.
+  - MAKE SURE THEY ARE 8-WIRE SPI. They have to have the CS (chip select) pin if you want the ability to display a 
+    unique image on each eye. If you want the eyes to just mirror each other, you can use any of the options, most 
+    of the available 1.3 inch modules are 7 pins. You could use 
   - [Forum post for using multiple ST7789's](https://forums.adafruit.com/viewtopic.php?t=183537)
   - [Python library](https://github.com/pimoroni/st7789-python) - dual displays is broken on versions 1.0.0 and 1.0.1 but 0.0.4 works fine
   - [Not sure if this will come in handy](https://learn.adafruit.com/adafruit-mini-pitft-135x240-color-tft-add-on-for-raspberry-pi/overview)
