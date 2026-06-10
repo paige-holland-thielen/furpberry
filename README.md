@@ -82,7 +82,7 @@ following:
     1.3 inch screens for the final version.
   - MAKE SURE THEY ARE 8-WIRE SPI. They have to have the CS (chip select) pin if you want the ability to display a 
     unique image on each eye. If you want the eyes to just mirror each other, you can use any of the options, most 
-    of the available 1.3 inch modules are 7 pins. You could use 
+    of the available 1.3 inch modules are 7 pins.
   - [Forum post for using multiple ST7789's](https://forums.adafruit.com/viewtopic.php?t=183537)
   - [Python library](https://github.com/pimoroni/st7789-python) - dual displays is broken on versions 1.0.0 and 1.0.1 but 0.0.4 works fine
   - [Not sure if this will come in handy](https://learn.adafruit.com/adafruit-mini-pitft-135x240-color-tft-add-on-for-raspberry-pi/overview)
