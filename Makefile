@@ -4,7 +4,7 @@ all: test black flake8 mypy
 
 # Set up a virtual environment.
 venv: dev-requirements.txt requirements.txt
-	python -m venv venv
+	python -m venv --system-site-packages venv
 	venv/bin/pip install --upgrade pip wheel setuptools pip-tools
 	venv/bin/pip install -r dev-requirements.txt
 	venv/bin/pip install -e .[dev]

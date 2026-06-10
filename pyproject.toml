@@ -39,7 +39,7 @@ dev = [
 
 [tool.isort]
 profile = "black"
-extend_skip = [".github", "src/version", "src/furpberry/util/pyfurby"]
+extend_skip = [".github", "src/version"]
 
 [tool.black]
 target-version = ['py311']
@@ -49,7 +49,6 @@ extend-exclude = '''
 /(
   | \.github
   | src/version
-  | src/furpberry/util/pyfurby
 )/
 '''
 line-length = 120
