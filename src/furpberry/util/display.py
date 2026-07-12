@@ -17,7 +17,7 @@ class Display:
         y_offset: int = 0,
         height: int = 240,
         width: int = 240,
-        rotation: int = 90,
+        rotation: int = 0,
         invert: bool = False,
     ) -> None:
         self.spi_id = spi_id
@@ -36,13 +36,15 @@ class Display:
         if spi_id == 0:
             self.RST = Pin.PI31.value
             self.CS = 0
+            # Only right eye (spi_id=0) controls the shared backlight
+            backlight_pin = self.BACKLIGHT
         elif spi_id == 1:
             self.RST = Pin.PI18.value
             self.CS = 1
+            # Left eye doesn't control backlight to avoid GPIO conflict
+            backlight_pin = None
         else:
             raise ValueError("Invalid SPI ID")
-
-        logger.info(f"{self.eye_name} eye display initialized")
 
         self.display = st7789.ST7789(
             height=self._height,
@@ -52,13 +54,15 @@ class Display:
             cs=self.CS,
             dc=self.DC,
             rst=self.RST,
-            backlight=self.BACKLIGHT,
+            backlight=backlight_pin,
             spi_speed_hz=20 * 1000 * 1000,
             offset_left=self._x_offset,
             offset_top=self._y_offset,
             invert=self._invert,
         )
 
+        logger.info(f"{self.eye_name} eye display initialized")
+        # begin() is deprecated in 0.0.4 but harmless - initialization happens in __init__
         self.display.begin()
         self.close_eye()
 
@@ -72,4 +76,9 @@ class Display:
         self.backlight(False)
 
     def backlight(self, on: bool) -> None:
-        self.display.set_backlight(on)
+        # Only right eye (spi_id=0) has backlight control
+        # Left eye backlight calls are no-ops since the backlight is shared
+        if self.spi_id == 0:
+            self.display.set_backlight(on)
+        else:
+            logger.debug(f"{self.eye_name} eye: backlight control skipped (controlled by RIGHT eye)")

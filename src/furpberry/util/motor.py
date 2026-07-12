@@ -16,13 +16,13 @@ class Motor:
 
     def __init__(
         self,
-        pwm: Pin = Pin.PI7,
+        pwm: Pin = Pin.PI8,
         in1: Pin = Pin.PI12,
         in2: Pin = Pin.PI11,
         standby: Pin = Pin.PI13,
         dutyCycle: float = 25.0,
     ):
-        self.pwm = pwm.value
+        self.pwm = pwm.value  # pin value
         self.in1 = in1.value
         self.in2 = in2.value
         self.standby = standby.value
@@ -36,7 +36,7 @@ class Motor:
         GPIO.setup(self.standby, GPIO.OUT, initial=GPIO.HIGH)  # Connected to STBY - HIGH to enable driver
 
         # set up PWM
-        self.motorPWM = GPIO.PWM(self.pwm, self.frequency)
+        self.motorPWM = GPIO.PWM(self.pwm, self.frequency)  # channel (pin), frequency (Hz)
 
     def set_duty_cycle(self, dc: float):
         logger.debug(f"Motor: duty cycle changed to {dc}%")
