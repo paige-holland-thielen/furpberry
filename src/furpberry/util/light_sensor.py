@@ -10,11 +10,11 @@ class LightSense:
         self.measurement_pin = measurement_pin.value
 
         # set up GPIO pin for light sensor as input
-        GPIO.setup(self.measurement_pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+        GPIO.setup(self.measurement_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
     def measure(self) -> bool:
         """Returns True if light is detected"""
-        result = GPIO.input(self.measurement_pin) == GPIO.HIGH
+        result = GPIO.input(self.measurement_pin) == GPIO.LOW  # Active-low sensor
         logger.debug(f"Light sensor: {'LIGHT DETECTED' if result else 'no light'}")
         return result
 

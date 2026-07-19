@@ -23,8 +23,8 @@ class Furby:
         y_offset: int = 0,
         height: int = 240,
         width: int = 240,
-        l_rotation: int = 180,
-        r_rotation: int = 0,
+        l_rotation: int = 270,
+        r_rotation: int = 90,
         invert: bool = False,
     ) -> None:
         self.eye_height = height
@@ -32,10 +32,10 @@ class Furby:
         self.left_eye: Display = Display(1, x_offset, y_offset, height, width, l_rotation, invert)
         self.right_eye: Display = Display(0, x_offset, y_offset, height, width, r_rotation, invert)
         self.light_sensor = LightSense()
-        self.motor = Motor()
+        self.motor = Motor(dutyCycle=50)
         self.google_home = GoogleHome("furby")
 
-        self.image_dir = files(furpberry.util).joinpath('resized_images')
+        self.image_dir = files(furpberry.util).joinpath('img')
         self.images: list[str] = sorted(os.listdir(self.image_dir))
         self.starting_image_index: int = -1
 
@@ -102,7 +102,8 @@ def run_furby(log_level: str) -> None:
     except KeyboardInterrupt:
         logger.info("Shutting down Furby")
         furby.close_eyes()
+        furby.motor.stop()
 
 
 if __name__ == "__main__":
-    run_furby("DEBUG")
+    run_furby()

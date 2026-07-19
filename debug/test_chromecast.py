@@ -1,7 +1,8 @@
+from furpberry.util.logger import configure_logging
 import time
 from furpberry.util.google_home import GoogleHome
 
-
+configure_logging("DEBUG")
 gh = GoogleHome("furby")
 
 print("Testing chromecast interactions and printing output, press CTRL+C to exit. "
@@ -12,4 +13,5 @@ try:
         time.sleep(3)
 except KeyboardInterrupt:
     print("CTRL+C pressed, cleaning up")
-gh.stop()
+finally:
+    gh.stop()

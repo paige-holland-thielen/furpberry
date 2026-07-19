@@ -15,7 +15,7 @@ It also uses a Raspberry Pi Zero W, a Google Home mini, solder, hot glue, and un
 # Wiring:
 The hardware is listed in the section below. This chart shows my wiring, 
 using exactly the hardware I selected. If you wish to change the wiring 
-in any way, the pins are assigned in /src/furpberry/util/hardware.py.
+in any way, the pins are assigned in /src/furpberry/util/pins.py.
 Since the ST7789 package insisted on using GPIO/BCM numbering and I hate 
 that, I have included both in this table. There is an abstraction layer 
 in the form of an enum called "Pin" also defined in `pins.py` that 
@@ -27,10 +27,10 @@ I need to verify that the wires are correctly routed, I can just count.
 | 1      | -        | Light sensor Vin         | 3V3 supply voltage for CdS                                        |
 | 2      | -        | TB6612 VCC               | Motor control 5V supply (VCC) (NOT motor power, see below)        |
 | 6      | -        | TB6612 GND               | Motor control GND                                                 |
-| 7      | 4        | TB6612 PWM               | Motor control PWM                                                 |
+| 8      | 4        | TB6612 PWM               | Motor control PWM                                                 |
+| 9      | -        | ST7789 GND               | Shared display GND                                                |
 | 11     | 17       | TB6612 AIN2              | Motor control AIN2                                                |
 | 12     | 18       | TB6612 AIN1              | Motor control AIN1                                                |
-| 13     | -        | ST7789 GND               | Shared display GND                                                |
 | 17     | -        | ST7789 VCC               | Shared peripheral 3.3V supply (VCC for both displays)             |
 | 18     | 24       | ST7789 RST               | Left display reset bit                                            |
 | 19     | 10       | ST7789 SDA               | (SPI0 MOSI) (shared between two displays)                         |

@@ -5,6 +5,7 @@ import os
 _log_level = "INFO"
 _configured = False
 
+
 def configure_logging(level="INFO"):
     """Configure logging for the entire application"""
     global _log_level, _configured
@@ -26,6 +27,7 @@ def configure_logging(level="INFO"):
     logging.getLogger('asyncio').setLevel(logging.WARNING)
 
     _configured = True
+
 
 def get_logger(name):
     """Get a logger for a specific module"""
