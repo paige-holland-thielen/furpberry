@@ -1,0 +1,16 @@
+[Unit]
+Description=Furby Auto-start Service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=furby
+Group=furby
+ExecStart=/home/furby/furpberry/start_furby.sh
+RemainAfterExit=yes
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
